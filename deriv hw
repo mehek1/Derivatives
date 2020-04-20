@@ -1,0 +1,87 @@
+"""
+
+#from math import sin, radians
+import numpy as np
+import matplotlib.pyplot as plt
+#h = 0.0000000000000001
+a = 0
+b = 10
+n = 50
+h = (b-a)/(n-1)
+x = np.linspace(a,b,n)
+f1 = np.sin(x)
+
+
+def main():
+    
+    y1 = np.vectorize(f1(x))
+    print(y1)
+    f1p = derivativef1(f1,x,h)
+    print(f1p)
+    f1p_double = secondderivativef1(f1,x,h)
+    print(f1p_double)
+    
+    plt.plot(x,f1(x))
+    plt.show
+
+    plt.plot(x,derivativef1(f1,x,h))
+    plt.show
+    
+    plt.plot(x,secondderivativef1(f1,x,h))
+    plt.show
+    
+    
+    print("__________________________________")
+    print("F1(x) in orange, F1'(x) in blue, and F1''(x) in green")
+    
+ 
+    y2 = np.vectorize(f2(x))
+    print(y2)
+    f2p = derivativef2(f2,x,h)
+    print(f2p)
+    f2p_double = secondderivativef2(derivativef2,x,h)
+    print(f2p_double)
+    
+    plt.plot(x,f2(x))
+    plt.show
+
+    plt.plot(x,derivativef2(f2,x,h))
+    plt.show
+    
+    plt.plot(x,secondderivativef2(derivativef2,x,h))
+    plt.show
+    
+    
+    print("__________________________________")
+    print("F2(x) in orange, F2'(x) in blue, and F2''(x) in green")
+
+    
+ 
+
+def f1(x):
+    return np.sin(x)
+    
+def derivativef1(f1,x,h):
+    return ( f1(x+h)-f1(x-h) )/(2*h)
+
+def secondderivativef1(f1,x,h):
+    return (f1(x-h)-2*f1(x)+f1(x+h))/h**2
+
+#def drivativeplot(f,a,b,n,h):        
+    
+
+def f2(x):
+    return x**3
+    
+def derivativef2(f2,x,h):
+    return (f2(x+h)-f2(x-h)/(2*h))
+
+def secondderivativef2(derivativef2,x,h):
+    return (f2(x-h)-2*f2(x)+f2(x+h))/h**2
+
+
+    
+
+
+if __name__ == "__main__":
+    main() 
